@@ -1,6 +1,0 @@
-fastapi>=0.115
-uvicorn[standard]>=0.30
-playwright>=1.47
-pydantic>=2.7          # imported directly by app/main.py (also a FastAPI dep)
-certifi>=2024.2        # TLS roots for the Telnyx calls; there is a fallback,
-                       # but relying on the image's cert bundle is fragile
