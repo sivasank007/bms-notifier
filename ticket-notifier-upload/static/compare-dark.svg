@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 200" width="640" height="200" role="img" aria-label="Refreshing all night ends in sold out; an alert on duty ends in a phone call.">
+  <rect width="640" height="200" fill="#16191f"/>
+  <style>
+    text { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+    .cmp-pane { fill: none; stroke: #242933; }
+    .cmp-pane.win { fill: #2a151a; stroke: #f2546d; }
+    .cmp-rule { stroke: #242933; }
+    .cmp-rule.win { stroke: #f2546d; opacity: .18; }
+    .cmp-label { fill: #949cab; font-size: 10.5px; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; }
+    .cmp-label.win { fill: #f2546d; }
+    .cmp-time { fill: #949cab; font-size: 11.5px; }
+    .cmp-act { fill: #949cab; font-size: 13px; }
+    .cmp-act.strong { fill: #e8eaf0; font-weight: 650; }
+    .cmp-aside { fill: #949cab; opacity: .65; font-size: 11.5px; }
+    .cmp-icon { fill: none; stroke: #949cab; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+    .cmp-icon.win { stroke: #f2546d; }
+    .cmp-chip { fill: #1d2128; }
+    .cmp-chip.bad { fill: #2d1a18; }
+    .cmp-chip.good { fill: #f2546d; }
+    .cmp-chip-text { fill: #949cab; font-size: 10px; font-weight: 600; }
+    .cmp-chip-text.bad { fill: #ff7b72; font-weight: 700; }
+    .cmp-chip-text.good { fill: #1a0d10; font-weight: 700; }
+  </style>
+  <defs>
+    <symbol id="i-refresh" viewBox="0 0 16 16">
+      <path d="M13.4 7a5.5 5.5 0 1 0-.5 3.4"/><path d="M13.6 3.4V7H10"/>
+    </symbol>
+    <symbol id="i-phone" viewBox="0 0 16 16">
+      <path d="M5.4 2.3 3.1 3.6c-.8.5-1.1 1.5-.7 2.3a16 16 0 0 0 7.7 7.7c.8.4 1.8.1 2.3-.7l1.3-2.3-3-1.8-1.4 1.4a12 12 0 0 1-3.5-3.5l1.4-1.4-1.8-3Z"/>
+    </symbol>
+    <symbol id="i-bolt" viewBox="0 0 16 16">
+      <path d="M8.8 1.5 3.4 9.1h3.6l-.6 5.4 5.4-7.6H8.2l.6-5.4Z"/>
+    </symbol>
+  </defs>
+  <g transform="translate(0,6)">
+      <rect class="cmp-pane" x="0" y="1" width="306" height="186" rx="11"/>
+      <text class="cmp-label" x="16" y="28">On your own</text>
+      <text class="cmp-time" x="16" y="53">11:02 PM</text>
+      <use class="cmp-icon" href="#i-refresh" x="78" y="44" width="12" height="12"/>
+      <text class="cmp-act" x="95" y="53">you refresh</text>
+      <rect class="cmp-chip plain" x="240" y="42" width="50" height="17" rx="8.5"/>
+      <text class="cmp-chip-text plain" x="265.0" y="53.5" text-anchor="middle">not yet</text>
+      <line class="cmp-rule" x1="16" y1="68" x2="290" y2="68"/>
+      <text class="cmp-time" x="16" y="87">02:14 AM</text>
+      <use class="cmp-icon" href="#i-refresh" x="78" y="78" width="12" height="12"/>
+      <text class="cmp-act" x="95" y="87">you refresh<tspan class="cmp-aside"> (again)</tspan></text>
+      <rect class="cmp-chip plain" x="240" y="76" width="50" height="17" rx="8.5"/>
+      <text class="cmp-chip-text plain" x="265.0" y="87.5" text-anchor="middle">not yet</text>
+      <line class="cmp-rule" x1="16" y1="102" x2="290" y2="102"/>
+      <text class="cmp-time" x="16" y="121">07:30 AM</text>
+      <use class="cmp-icon" href="#i-refresh" x="78" y="112" width="12" height="12"/>
+      <text class="cmp-act" x="95" y="121">you refresh<tspan class="cmp-aside"> (still)</tspan></text>
+      <rect class="cmp-chip plain" x="240" y="110" width="50" height="17" rx="8.5"/>
+      <text class="cmp-chip-text plain" x="265.0" y="121.5" text-anchor="middle">not yet</text>
+      <line class="cmp-rule" x1="16" y1="136" x2="290" y2="136"/>
+      <text class="cmp-time" x="16" y="155">09:12 AM</text>
+      <text class="cmp-act" x="78" y="155">you're in a meeting</text>
+      <rect class="cmp-chip bad" x="236" y="144" width="54" height="17" rx="8.5"/>
+      <text class="cmp-chip-text bad" x="263.0" y="155.5" text-anchor="middle">sold out</text>
+      <rect class="cmp-pane win" x="334" y="1" width="306" height="186" rx="11"/>
+      <use class="cmp-icon win" href="#i-bolt" x="350" y="19" width="11" height="11"/>
+      <text class="cmp-label win" x="365" y="28">Agent on duty</text>
+      <text class="cmp-time" x="350" y="53">11:02 PM</text>
+      <text class="cmp-act" x="412" y="53">agent checks</text>
+      <rect class="cmp-chip plain" x="574" y="42" width="50" height="17" rx="8.5"/>
+      <text class="cmp-chip-text plain" x="599.0" y="53.5" text-anchor="middle">not yet</text>
+      <line class="cmp-rule win" x1="350" y1="68" x2="624" y2="68"/>
+      <text class="cmp-time" x="350" y="87">02:14 AM</text>
+      <text class="cmp-act" x="412" y="87">agent checks</text>
+      <rect class="cmp-chip plain" x="574" y="76" width="50" height="17" rx="8.5"/>
+      <text class="cmp-chip-text plain" x="599.0" y="87.5" text-anchor="middle">not yet</text>
+      <line class="cmp-rule win" x1="350" y1="102" x2="624" y2="102"/>
+      <text class="cmp-time" x="350" y="121">07:30 AM</text>
+      <text class="cmp-act" x="412" y="121">agent checks</text>
+      <rect class="cmp-chip plain" x="574" y="110" width="50" height="17" rx="8.5"/>
+      <text class="cmp-chip-text plain" x="599.0" y="121.5" text-anchor="middle">not yet</text>
+      <line class="cmp-rule win" x1="350" y1="136" x2="624" y2="136"/>
+      <text class="cmp-time" x="350" y="155">09:12 AM</text>
+      <use class="cmp-icon" href="#i-phone" x="412" y="146" width="12" height="12"/>
+      <text class="cmp-act strong" x="429" y="155">your phone rings</text>
+      <rect class="cmp-chip good" x="576" y="144" width="48" height="17" rx="8.5"/>
+      <text class="cmp-chip-text good" x="600.0" y="155.5" text-anchor="middle">booked</text>
+    </g>
+</svg>

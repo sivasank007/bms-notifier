@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ticket Notifier</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='3' y='8' width='26' height='16' rx='4' fill='%23e02c48'/%3E%3Ccircle cx='16' cy='8' r='3' fill='%23fff'/%3E%3Ccircle cx='16' cy='24' r='3' fill='%23fff'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+<svg class="sprite" aria-hidden="true" focusable="false">
+  <symbol id="i-pin" viewBox="0 0 16 16">
+    <path d="M8 14.5s5-4.6 5-8.2A5 5 0 1 0 3 6.3c0 3.6 5 8.2 5 8.2Z"/>
+    <circle cx="8" cy="6.2" r="1.9"/>
+  </symbol>
+  <symbol id="i-theater" viewBox="0 0 16 16">
+    <path d="M2.2 13.8V4.4l5.8-2.2 5.8 2.2v9.4"/>
+    <path d="M1 13.8h14M6.4 13.8V9.6h3.2v4.2"/>
+  </symbol>
+  <symbol id="i-calendar" viewBox="0 0 16 16">
+    <rect x="2.2" y="3.4" width="11.6" height="10.4" rx="2"/>
+    <path d="M2.2 6.6h11.6M5.4 1.8v2.6M10.6 1.8v2.6"/>
+  </symbol>
+  <symbol id="i-clock" viewBox="0 0 16 16">
+    <circle cx="8" cy="8" r="6"/><path d="M8 4.6V8l2.4 1.6"/>
+  </symbol>
+  <symbol id="i-phone" viewBox="0 0 16 16">
+    <path d="M5.4 2.3 3.1 3.6c-.8.5-1.1 1.5-.7 2.3a16 16 0 0 0 7.7 7.7c.8.4 1.8.1 2.3-.7l1.3-2.3-3-1.8-1.4 1.4a12 12 0 0 1-3.5-3.5l1.4-1.4-1.8-3Z"/>
+  </symbol>
+  <symbol id="i-bolt" viewBox="0 0 16 16">
+    <path d="M8.8 1.5 3.4 9.1h3.6l-.6 5.4 5.4-7.6H8.2l.6-5.4Z"/>
+  </symbol>
+  <symbol id="i-bell" viewBox="0 0 16 16">
+    <path d="M4 6.6a4 4 0 0 1 8 0c0 3 .9 4.2 1.4 4.8H2.6C3.1 10.8 4 9.6 4 6.6Z"/>
+    <path d="M6.6 13.4a1.6 1.6 0 0 0 2.8 0"/>
+  </symbol>
+  <symbol id="i-refresh" viewBox="0 0 16 16">
+    <path d="M13.4 7a5.5 5.5 0 1 0-.5 3.4"/><path d="M13.6 3.4V7H10"/>
+  </symbol>
+</svg>
+
+<header class="topbar">
+  <div class="brand">
+    <svg class="brand-mark" viewBox="0 0 34 20" aria-hidden="true">
+      <!-- one path, so the notches are real cut-outs and need no colour match -->
+      <path d="M5 1.5h24a3.5 3.5 0 0 1 3.5 3.5v2a3 3 0 0 0 0 6v2a3.5 3.5 0 0 1-3.5 3.5H5A3.5 3.5 0 0 1 1.5 15v-2a3 3 0 0 0 0-6V5A3.5 3.5 0 0 1 5 1.5Z"
+            fill="var(--accent)"/>
+      <path d="M8 7h9M8 10.5h6" stroke="var(--accent-ink)" stroke-width="1.6"
+            stroke-linecap="round" opacity=".75"/>
+    </svg>
+    <strong>Ticket Notifier</strong>
+  </div>
+  <div class="source">BMS</div>
+</header>
+
+<main>
+  <nav class="tabs">
+    <button class="tab active" data-tab="active">Active <span class="count" id="count-active">0</span></button>
+    <button class="tab" data-tab="past">Past <span class="count" id="count-past">0</span></button>
+    <button class="tab" data-tab="tech">Technical log</button>
+    <button class="primary" id="new-btn">+ New alert</button>
+  </nav>
+
+  <!-- ── list views ─────────────────────────────────────────────────── -->
+  <section class="view" id="view-active">
+    <div id="list-active"></div>
+  </section>
+
+  <section class="view" id="view-past" hidden>
+    <div id="list-past"></div>
+  </section>
+
+  <section class="view" id="view-tech" hidden>
+    <div class="card">
+      <h2>Technical log</h2>
+      <p class="sub">Server-side detail for debugging. The last 400 lines are also
+         in <code>logs/app.log</code>.</p>
+      <pre id="tech-log" class="tech-log">loading…</pre>
+    </div>
+  </section>
+
+  <!-- ── form view ──────────────────────────────────────────────────── -->
+  <section class="view" id="view-form" hidden>
+    <div class="card">
+      <h1 id="form-title">New alert</h1>
+      <p class="sub">We check BookMyShow for you and call your phone the moment
+         bookings open for your movie at your theater.</p>
+
+      <form id="watch-form" autocomplete="off">
+        <div class="grid">
+          <div class="field">
+            <label for="city-input">City</label>
+            <div class="combo">
+              <input id="city-input" placeholder="Start typing a city…" required>
+              <ul class="suggestions" id="city-list" hidden></ul>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="theater-input">Theater</label>
+            <div class="combo">
+              <input id="theater-input" placeholder="Pick a city first" required disabled>
+              <ul class="suggestions" id="theater-list" hidden></ul>
+            </div>
+            <small id="theater-hint" hidden></small>
+          </div>
+
+          <div class="field full">
+            <label for="movie-input">Movie name</label>
+            <input id="movie-input" placeholder="e.g. Jailer 2" required>
+            <small>Type it exactly as BookMyShow shows it. We match any title that
+                   contains what you type, so a precise name avoids false alerts.</small>
+          </div>
+
+          <div class="field">
+            <label for="date-input">Booking date</label>
+            <input id="date-input" type="date" required>
+            <small>Click to pick a date. Past dates are not selectable.</small>
+          </div>
+
+          <div class="field">
+            <label for="interval-input">Check every</label>
+            <select id="interval-input"></select>
+          </div>
+
+          <div class="field full">
+            <label for="phone-input">Call this number</label>
+            <div class="phone-row">
+              <span class="prefix">+91</span>
+              <input id="phone-input" inputmode="numeric" maxlength="10"
+                     placeholder="9876543210" required>
+            </div>
+            <small id="call-warning" hidden class="warn-text">
+              Voice calls are not configured on this server — alerts will appear
+              in the log only.</small>
+          </div>
+        </div>
+
+        <div class="actions">
+          <button type="submit" id="save-btn" class="primary">Start monitoring</button>
+          <button type="button" id="cancel-btn" class="ghost">Cancel</button>
+          <span class="form-error" id="form-error"></span>
+        </div>
+      </form>
+    </div>
+  </section>
+</main>
+
+<script src="/static/app.js"></script>
+</body>
+</html>
